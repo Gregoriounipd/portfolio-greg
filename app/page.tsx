@@ -1,65 +1,80 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+    <main className="min-h-screen bg-gradient-to-b from-white to-gray-100 text-gray-900 flex flex-col items-center justify-center">
+      {/* Navbar */}
+      <nav className="fixed top-0 w-full flex justify-center gap-8 py-4 bg-white/70 backdrop-blur-md shadow-sm z-50">
+        <a href="#home" className="hover:text-blue-500 font-medium">Home</a>
+        <a href="#projects" className="hover:text-blue-500 font-medium">Progetti</a>
+        <a href="#contact" className="hover:text-blue-500 font-medium">Contatti</a>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="text-center mt-24 px-4">
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-4">
+          Ciao, sono <span className="text-blue-600">Gregorio</span> 👋
+        </h1>
+        <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+          Studente di Diritto e Tecnologia all'Università di Padova.  
+          Mi occupo di accessibilità web e sviluppo di esperienze digitali inclusive.
+        </p>
+      </section>
+
+      {/* Projects */}
+      <section id="projects" className="mt-32 w-full max-w-5xl px-6">
+        <h2 className="text-3xl font-semibold mb-10 text-center">Progetti</h2>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Itinerari Accessibili */}
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://itinerariaccessibili.com"
             target="_blank"
             rel="noopener noreferrer"
+            className="p-6 rounded-2xl shadow-lg bg-white hover:scale-105 transition-transform"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+            <h3 className="font-semibold text-xl mb-2">Itinerari Accessibili</h3>
+            <p className="text-gray-600 text-sm mb-3">
+              Sito accessibile sviluppato per il Museo Poleni, con mappe interattive e audiodescrizioni per persone cieche.
+            </p>
+            <span className="text-blue-500 text-sm font-medium">→ itinerariaccessibili.com</span>
           </a>
+
+          {/* Adori Events */}
           <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://adorievents.com"
             target="_blank"
             rel="noopener noreferrer"
+            className="p-6 rounded-2xl shadow-lg bg-white hover:scale-105 transition-transform"
           >
-            Documentation
+            <h3 className="font-semibold text-xl mb-2">Adori Events</h3>
+            <p className="text-gray-600 text-sm mb-3">
+              Piattaforma moderna per la gestione di eventi e matrimoni. Design elegante e UX intuitiva.
+            </p>
+            <span className="text-blue-500 text-sm font-medium">→ adorievents.com</span>
           </a>
+
+          {/* HydraJoy */}
+          <div className="p-6 rounded-2xl shadow-lg bg-white hover:scale-105 transition-transform">
+            <h3 className="font-semibold text-xl mb-2">HydraJoy</h3>
+            <p className="text-gray-600 text-sm">
+              Shopify store dedicato al benessere e all’idratazione, con design minimal e user-friendly.
+            </p>
+          </div>
+
+          {/* Portfolio */}
+          <div className="p-6 rounded-2xl shadow-lg bg-white hover:scale-105 transition-transform">
+            <h3 className="font-semibold text-xl mb-2">Portfolio</h3>
+            <p className="text-gray-600 text-sm">
+              Questo sito personale, realizzato con Next.js, Tailwind e deploy su Vercel.
+            </p>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="mt-32 mb-24 text-center px-4">
+        <h2 className="text-3xl font-semibold mb-4">Contattami</h2>
+        <p className="text-gray-600 text-lg">gregorio.mangione@example.com</p>
+      </section>
+    </main>
   );
 }
