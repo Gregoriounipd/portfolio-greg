@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { 
+import Navbar from '../../components/Navbar'
+import {
   ArrowLeftIcon,
   CodeBracketIcon,
   ComputerDesktopIcon,
@@ -19,11 +20,14 @@ import {
   ChartBarIcon,
   CubeTransparentIcon,
   ServerIcon,
-  PaintBrushIcon
+  PaintBrushIcon,
+  Bars3Icon
 } from '@heroicons/react/24/outline'
 
 export default function Servizi() {
   const [selectedService, setSelectedService] = useState(null)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   // Servizi dettagliati con PREZZI REALISTICI
   const servizi = [
@@ -34,9 +38,9 @@ export default function Servizi() {
       icona: <CodeBracketIcon className="w-8 h-8" />,
       colore: 'amber',
       prezzo: {
-        starter: 300,
-        professional: 800,
-        enterprise: 1500
+        starter: 250,
+        professional: 450,
+        enterprise: 900
       },
       caratteristiche: [
         'Sviluppo frontend con React/Next.js',
@@ -57,9 +61,9 @@ export default function Servizi() {
       icona: <CurrencyEuroIcon className="w-8 h-8" />,
       colore: 'blue',
       prezzo: {
-        starter: 500,
-        professional: 1200,
-        enterprise: 2500
+        starter: 300,
+        professional: 800,
+        enterprise: 1400
       },
       caratteristiche: [
         'Catalogo prodotti dinamico',
@@ -80,7 +84,7 @@ export default function Servizi() {
       icona: <DevicePhoneMobileIcon className="w-8 h-8" />,
       colore: 'gradient',
       prezzo: {
-        starter: 400,
+        starter: 500,
         professional: 1000,
         enterprise: 2000
       },
@@ -103,9 +107,9 @@ export default function Servizi() {
       icona: <ShieldCheckIcon className="w-8 h-8" />,
       colore: 'blue',
       prezzo: {
-        starter: 250,
-        professional: 500,
-        enterprise: 900
+        starter: 65,
+        professional: 250,
+        enterprise: 500
       },
       caratteristiche: [
         'Audit accessibilità completo',
@@ -116,7 +120,7 @@ export default function Servizi() {
         'Report dettagliato'
       ],
       tecnologie: ['WCAG', 'ARIA', 'Screen Readers', 'Axe DevTools'],
-      tempiConsegna: '3-14 giorni',
+      tempiConsegna: '3-5 giorni',
       ideale: 'Enti pubblici, musei, università, aziende che vogliono essere inclusive'
     },
     {
@@ -126,9 +130,9 @@ export default function Servizi() {
       icona: <MagnifyingGlassIcon className="w-8 h-8" />,
       colore: 'amber',
       prezzo: {
-        starter: 200,
-        professional: 400,
-        enterprise: 700
+        starter: 100,
+        professional: 300,
+        enterprise: 550
       },
       caratteristiche: [
         'Analisi SEO tecnico',
@@ -139,7 +143,7 @@ export default function Servizi() {
         'Report performance mensili'
       ],
       tecnologie: ['Google Search Console', 'Lighthouse', 'GTmetrix', 'Schema.org'],
-      tempiConsegna: '3-7 giorni',
+      tempiConsegna: '2-3 giorni',
       ideale: 'Siti esistenti che vogliono migliorare visibilità e performance'
     },
     {
@@ -149,9 +153,9 @@ export default function Servizi() {
       icona: <PaintBrushIcon className="w-8 h-8" />,
       colore: 'gradient',
       prezzo: {
-        starter: 350,
-        professional: 700,
-        enterprise: 1200
+        starter: 250,
+        professional: 360,
+        enterprise: 700
       },
       caratteristiche: [
         'Wireframe e mockup',
@@ -162,7 +166,7 @@ export default function Servizi() {
         'Design responsive'
       ],
       tecnologie: ['Figma', 'Adobe XD', 'Tailwind CSS', 'Framer Motion'],
-      tempiConsegna: '5-15 giorni',
+      tempiConsegna: '5-10 giorni',
       ideale: 'Startup, redesign di siti esistenti, nuovi progetti'
     }
   ]
@@ -237,37 +241,44 @@ export default function Servizi() {
 
   return (
     <>
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-sm z-50">
+      {/* Navbar Principale */}
+      <Navbar />
+
+      {/* Breadcrumb - CHIUSO CORRETTAMENTE */}
+      <div className="pt-16 bg-gradient-to-r from-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-4">
-              <Link href="/" className="flex items-center text-gray-600 hover:text-gray-900">
-                <ArrowLeftIcon className="w-5 h-5 mr-2" />
+          <div className="flex justify-between items-center py-4">
+            <nav className="flex items-center space-x-2 text-sm">
+              <Link href="/" className="flex items-center text-gray-600 hover:text-blue-600 transition">
+                <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                </svg>
                 Home
               </Link>
               <span className="text-gray-400">/</span>
               <span className="text-gray-900 font-semibold">Servizi</span>
-            </div>
-            <Link 
+            </nav>
+
+            <Link
               href="/#contatti"
-              className="px-4 py-2 bg-gradient-to-r from-brand-amber-600 to-brand-blue-800 text-white rounded-lg hover:opacity-90 transition"
+              className="hidden md:flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:opacity-90 transition shadow-lg"
             >
-              Contattami
+              <span>Richiedi Preventivo</span>
+              <ArrowRightIcon className="w-4 h-4 ml-2" />
             </Link>
           </div>
         </div>
-      </nav>
+      </div>
 
-      {/* Hero Section */}
-      <section className="pt-24 pb-12 bg-gradient-to-br from-gray-50 to-white">
+      {/* Hero Section - ORA FUORI DAL BREADCRUMB */}
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              I Miei <span className="bg-gradient-to-r from-brand-amber-700 to-brand-blue-800 bg-clip-text text-transparent">Servizi</span>
+              I Miei <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Servizi</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Soluzioni web professionali a prezzi competitivi. 
+              Soluzioni web professionali a prezzi competitivi.
               Qualità da agenzia, prezzi da freelancer.
             </p>
           </div>
@@ -279,35 +290,35 @@ export default function Servizi() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {servizi.map((servizio) => (
-              <div 
+              <div
                 key={servizio.id}
                 className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-xl transition-all duration-300 cursor-pointer"
                 onClick={() => setSelectedService(servizio)}
               >
                 <div className={`w-14 h-14 ${
-                  servizio.colore === 'amber' 
-                    ? 'bg-gradient-to-br from-amber-500 to-amber-600'
+                  servizio.colore === 'amber'
+                    ? 'bg-gradient-to-br from-purple-500 to-purple-600'
                     : servizio.colore === 'blue'
                     ? 'bg-gradient-to-br from-blue-700 to-blue-800'
-                    : 'bg-gradient-to-r from-brand-amber-600 to-brand-blue-800'
+                    : 'bg-gradient-to-r from-blue-500 to-purple-600'
                 } rounded-xl flex items-center justify-center mb-4 text-white`}>
                   {servizio.icona}
                 </div>
-                
+
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{servizio.titolo}</h3>
                 <p className="text-gray-600 mb-4">{servizio.descrizione}</p>
-                
+
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center text-sm text-gray-500">
                     <ClockIcon className="w-4 h-4 mr-1" />
                     {servizio.tempiConsegna}
                   </div>
-                  <div className="text-sm font-semibold text-brand-amber-600">
+                  <div className="text-sm font-semibold text-blue-500">
                     Da €{servizio.prezzo.starter}
                   </div>
                 </div>
-                
-                <button className="text-brand-blue-600 hover:text-brand-blue-700 font-semibold inline-flex items-center">
+
+                <button className="text-blue-600 hover:text-blue-700 font-semibold inline-flex items-center">
                   Scopri di più
                   <ArrowRightIcon className="w-4 h-4 ml-2" />
                 </button>
@@ -325,17 +336,17 @@ export default function Servizi() {
               <div className="flex justify-between items-start mb-6">
                 <div className="flex items-center">
                   <div className={`w-14 h-14 ${
-                    selectedService.colore === 'amber' 
-                      ? 'bg-gradient-to-br from-amber-500 to-amber-600'
+                    selectedService.colore === 'amber'
+                      ? 'bg-gradient-to-br from-purple-500 to-purple-600'
                       : selectedService.colore === 'blue'
                       ? 'bg-gradient-to-br from-blue-700 to-blue-800'
-                      : 'bg-gradient-to-r from-brand-amber-600 to-brand-blue-800'
+                      : 'bg-gradient-to-r from-blue-500 to-purple-600'
                   } rounded-xl flex items-center justify-center mr-4 text-white`}>
                     {selectedService.icona}
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900">{selectedService.titolo}</h2>
                 </div>
-                <button 
+                <button
                   onClick={() => setSelectedService(null)}
                   className="text-gray-400 hover:text-gray-600"
                 >
@@ -352,15 +363,15 @@ export default function Servizi() {
                 <h3 className="font-semibold text-gray-900 mb-4">Prezzi Trasparenti</h3>
                 <div className="grid grid-cols-3 gap-4">
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-brand-amber-600">€{selectedService.prezzo.starter}</p>
+                    <p className="text-2xl font-bold text-blue-500">€{selectedService.prezzo.starter}</p>
                     <p className="text-sm text-gray-600">Starter</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-brand-blue-800">€{selectedService.prezzo.professional}</p>
+                    <p className="text-2xl font-bold text-blue-800">€{selectedService.prezzo.professional}</p>
                     <p className="text-sm text-gray-600">Professional</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-2xl font-bold bg-gradient-to-r from-brand-amber-700 to-brand-blue-800 bg-clip-text text-transparent">
+                    <p className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
                       €{selectedService.prezzo.enterprise}+
                     </p>
                     <p className="text-sm text-gray-600">Enterprise</p>
@@ -386,7 +397,7 @@ export default function Servizi() {
                 <h3 className="font-semibold text-gray-900 mb-4">Tecnologie utilizzate</h3>
                 <div className="flex flex-wrap gap-2">
                   {selectedService.tecnologie.map((tech, index) => (
-                    <span 
+                    <span
                       key={index}
                       className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm"
                     >
@@ -404,14 +415,14 @@ export default function Servizi() {
 
               {/* CTA */}
               <div className="flex gap-4">
-                <Link 
+                <Link
                   href="/#contatti"
-                  className="flex-1 text-center px-6 py-3 bg-gradient-to-r from-brand-amber-600 to-brand-blue-800 text-white rounded-lg font-semibold hover:opacity-90 transition"
+                  className="flex-1 text-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold hover:opacity-90 transition"
                   onClick={() => setSelectedService(null)}
                 >
                   Richiedi Preventivo Gratuito
                 </Link>
-                <button 
+                <button
                   onClick={() => setSelectedService(null)}
                   className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition"
                 >
@@ -423,185 +434,184 @@ export default function Servizi() {
         </div>
       )}
 
-      {/* Packages Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Scegli il Tuo <span className="bg-gradient-to-r from-brand-amber-700 to-brand-blue-800 bg-clip-text text-transparent">Pacchetto</span>
-            </h2>
-            <p className="text-lg text-gray-600">
-              Soluzioni flessibili per ogni budget e necessità
-            </p>
-          </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {pacchetti.map((pacchetto, index) => (
-              <div 
-                key={index}
-                className={`relative bg-white rounded-2xl shadow-lg p-8 ${
-                  pacchetto.popolare ? 'ring-2 ring-brand-blue-600 transform scale-105' : ''
-                }`}
-              >
-                {pacchetto.popolare && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-gradient-to-r from-brand-amber-600 to-brand-blue-800 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                      Più Popolare
-                    </span>
-                  </div>
-                )}
-                
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{pacchetto.nome}</h3>
-                  <p className="text-gray-600">{pacchetto.descrizione}</p>
-                </div>
+        {/* Packages Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Scegli il Tuo <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Pacchetto</span>
+              </h2>
+              <p className="text-lg text-gray-600">
+                Soluzioni flessibili per ogni budget e necessità
+              </p>
+            </div>
 
-                <ul className="space-y-3 mb-8">
-                  {pacchetto.include.map((item, i) => (
-                    <li key={i} className="flex items-start">
-                      <CheckCircleIcon className="w-5 h-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
-                      <span className="text-gray-700">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link 
-                  href="/#contatti"
-                  className={`block text-center px-6 py-3 rounded-lg font-semibold transition ${
-                    pacchetto.popolare
-                      ? 'bg-gradient-to-r from-brand-amber-600 to-brand-blue-800 text-white hover:opacity-90'
-                      : 'border-2 border-gray-300 text-gray-700 hover:border-brand-amber-600'
-                  }`}
+            <div className="grid md:grid-cols-3 gap-8">
+              {pacchetti.map((pacchetto, index) => (
+                <div
+                  key={index}
+                  className={`relative bg-white rounded-2xl shadow-lg p-8 ${pacchetto.popolare ? 'ring-2 ring-brand-blue-600 transform scale-105' : ''
+                    }`}
                 >
-                  Inizia con {pacchetto.nome}
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+                  {pacchetto.popolare && (
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <span className="bg-gradient-to-r from-brand-blue-600 to-brand-purple-700 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                        Più Popolare
+                      </span>
+                    </div>
+                  )}
 
-      {/* Process Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Il Mio <span className="bg-gradient-to-r from-brand-amber-700 to-brand-blue-800 bg-clip-text text-transparent">Processo</span>
-            </h2>
-            <p className="text-lg text-gray-600">
-              Un approccio strutturato per garantire risultati eccellenti
-            </p>
-          </div>
+                  <div className="text-center mb-6">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{pacchetto.nome}</h3>
+                    <p className="text-gray-600">{pacchetto.descrizione}</p>
+                  </div>
 
-          <div className="grid md:grid-cols-5 gap-8">
-            {[
-              { fase: '1', nome: 'Analisi', desc: 'Comprendo le tue esigenze e obiettivi', icona: <MagnifyingGlassIcon className="w-6 h-6" /> },
-              { fase: '2', nome: 'Design', desc: 'Creo mockup e prototipi interattivi', icona: <PaintBrushIcon className="w-6 h-6" /> },
-              { fase: '3', nome: 'Sviluppo', desc: 'Codifico con tecnologie moderne', icona: <CodeBracketIcon className="w-6 h-6" /> },
-              { fase: '4', nome: 'Testing', desc: 'Test completi su tutti i dispositivi', icona: <ShieldCheckIcon className="w-6 h-6" /> },
-              { fase: '5', nome: 'Deploy', desc: 'Lancio e formazione', icona: <RocketLaunchIcon className="w-6 h-6" /> }
-            ].map((step, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-brand-amber-600 to-brand-blue-800 rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                  {step.icona}
+                  <ul className="space-y-3 mb-8">
+                    {pacchetto.include.map((item, i) => (
+                      <li key={i} className="flex items-start">
+                        <CheckCircleIcon className="w-5 h-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <span className="text-gray-700">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Link
+                    href="/#contatti"
+                    className={`block text-center px-6 py-3 rounded-lg font-semibold transition ${pacchetto.popolare
+                      ? 'bg-gradient-to-r from-blue-600 to-purple-800 text-white hover:opacity-90'
+                      : 'border-2 border-gray-300 text-gray-700 hover:border-brand-amber-600'
+                      }`}
+                  >
+                    Inizia con {pacchetto.nome}
+                  </Link>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Fase {step.fase}: {step.nome}</h3>
-                <p className="text-sm text-gray-600">{step.desc}</p>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Process Section */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Il Mio <span className="bg-gradient-to-r from-brand-blue-600 to-brand-purple-700 bg-clip-text text-transparent">Processo</span>
+              </h2>
+              <p className="text-lg text-gray-600">
+                Un approccio strutturato per garantire risultati eccellenti
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-5 gap-8">
+              {[
+                { fase: '1', nome: 'Analisi', desc: 'Comprendo le tue esigenze e obiettivi', icona: <MagnifyingGlassIcon className="w-6 h-6" /> },
+                { fase: '2', nome: 'Design', desc: 'Creo mockup e prototipi interattivi', icona: <PaintBrushIcon className="w-6 h-6" /> },
+                { fase: '3', nome: 'Sviluppo', desc: 'Codifico con tecnologie moderne', icona: <CodeBracketIcon className="w-6 h-6" /> },
+                { fase: '4', nome: 'Testing', desc: 'Test completi su tutti i dispositivi', icona: <ShieldCheckIcon className="w-6 h-6" /> },
+                { fase: '5', nome: 'Deploy', desc: 'Lancio e formazione', icona: <RocketLaunchIcon className="w-6 h-6" /> }
+              ].map((step, index) => (
+                <div key={index} className="text-center">
+                  <div className="w-16 h-16 bg-gradient-to-r from-brand-amber-600 to-brand-blue-800 rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                    {step.icona}
+                  </div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Fase {step.fase}: {step.nome}</h3>
+                  <p className="text-sm text-gray-600">{step.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Why These Prices Section */}
+        <section className="py-16 bg-gradient-to-br from-amber-50 to-blue-50">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Perché Questi <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Prezzi?</span>
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-white rounded-xl p-6">
+                <h3 className="font-bold text-gray-900 mb-3">💰 Risparmio Garantito</h3>
+                <p className="text-gray-600">
+                  Le agenzie chiedono €3000-10000 per gli stessi servizi.
+                  Con me risparmi fino al 70% mantenendo la stessa qualità.
+                </p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why These Prices Section */}
-      <section className="py-16 bg-gradient-to-br from-amber-50 to-blue-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Perché Questi <span className="bg-gradient-to-r from-brand-amber-700 to-brand-blue-800 bg-clip-text text-transparent">Prezzi?</span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-xl p-6">
-              <h3 className="font-bold text-gray-900 mb-3">💰 Risparmio Garantito</h3>
-              <p className="text-gray-600">
-                Le agenzie chiedono €3000-10000 per gli stessi servizi. 
-                Con me risparmi fino al 70% mantenendo la stessa qualità.
-              </p>
-            </div>
-            <div className="bg-white rounded-xl p-6">
-              <h3 className="font-bold text-gray-900 mb-3">🚀 ROI Veloce</h3>
-              <p className="text-gray-600">
-                Un sito professionale si ripaga in 2-3 mesi portando nuovi clienti. 
-                È un investimento, non un costo.
-              </p>
-            </div>
-            <div className="bg-white rounded-xl p-6">
-              <h3 className="font-bold text-gray-900 mb-3">🏆 Qualità Premium</h3>
-              <p className="text-gray-600">
-                Uso le stesse tecnologie di Netflix e Airbnb (Next.js, React). 
-                Il tuo sito sarà veloce, moderno e scalabile.
-              </p>
-            </div>
-            <div className="bg-white rounded-xl p-6">
-              <h3 className="font-bold text-gray-900 mb-3">📞 Contatto Diretto</h3>
-              <p className="text-gray-600">
-                Parli direttamente con me, non con commerciali. 
-                Risposte rapide e modifiche immediate.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Domande <span className="bg-gradient-to-r from-brand-amber-700 to-brand-blue-800 bg-clip-text text-transparent">Frequenti</span>
-            </h2>
-          </div>
-
-          <div className="space-y-6">
-            {faq.map((item, index) => (
-              <div key={index} className="bg-white rounded-xl p-6">
-                <h3 className="font-semibold text-gray-900 mb-2">{item.domanda}</h3>
-                <p className="text-gray-600">{item.risposta}</p>
+              <div className="bg-white rounded-xl p-6">
+                <h3 className="font-bold text-gray-900 mb-3">🚀 ROI Veloce</h3>
+                <p className="text-gray-600">
+                  Un sito professionale si ripaga in 2-3 mesi portando nuovi clienti.
+                  È un investimento, non un costo.
+                </p>
               </div>
-            ))}
+              <div className="bg-white rounded-xl p-6">
+                <h3 className="font-bold text-gray-900 mb-3">🏆 Qualità Premium</h3>
+                <p className="text-gray-600">
+                  Uso le stesse tecnologie di Netflix e Airbnb (Next.js, React).
+                  Il tuo sito sarà veloce, moderno e scalabile.
+                </p>
+              </div>
+              <div className="bg-white rounded-xl p-6">
+                <h3 className="font-bold text-gray-900 mb-3">📞 Contatto Diretto</h3>
+                <p className="text-gray-600">
+                  Parli direttamente con me, non con commerciali.
+                  Risposte rapide e modifiche immediate.
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-brand-amber-600 to-brand-blue-800">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Pronto a Iniziare il Tuo Progetto?
-          </h2>
-          <p className="text-xl text-white/90 mb-8">
-            Preventivo gratuito in 24 ore. Nessun impegno.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/#contatti"
-              className="px-8 py-4 bg-white text-brand-blue-800 rounded-lg font-semibold hover:bg-gray-100 transition inline-flex items-center justify-center"
-            >
-              Richiedi Preventivo
-              <ArrowRightIcon className="w-5 h-5 ml-2" />
-            </Link>
-            <Link 
-              href="/"
-              className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition inline-flex items-center justify-center"
-            >
-              Vedi Portfolio
-              <SparklesIcon className="w-5 h-5 ml-2" />
-            </Link>
+        {/* FAQ Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Domande <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Frequenti</span>
+              </h2>
+            </div>
+
+            <div className="space-y-6">
+              {faq.map((item, index) => (
+                <div key={index} className="bg-white rounded-xl p-6">
+                  <h3 className="font-semibold text-gray-900 mb-2">{item.domanda}</h3>
+                  <p className="text-gray-600">{item.risposta}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-20 bg-gradient-to-r from-blue-500 to-purple-600">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Pronto a Iniziare il Tuo Progetto?
+            </h2>
+            <p className="text-xl text-white/90 mb-8">
+              Preventivo gratuito in 24 ore. Nessun impegno.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/#contatti"
+                className="px-8 py-4 bg-white text-brand-blue-800 rounded-lg font-semibold hover:bg-gray-100 transition inline-flex items-center justify-center"
+              >
+                Richiedi Preventivo
+                <ArrowRightIcon className="w-5 h-5 ml-2" />
+              </Link>
+              <Link
+                href="/"
+                className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition inline-flex items-center justify-center"
+              >
+                Vedi Portfolio
+                <SparklesIcon className="w-5 h-5 ml-2" />
+              </Link>
+            </div>
+          </div>
+        </section>
     </>
   )
 }

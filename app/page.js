@@ -3,6 +3,10 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import Navbar from '../components/Navbar.js'
+
+
+
 
 // Hero Icons - npm install @heroicons/react
 import { 
@@ -39,7 +43,7 @@ export default function Home() {
       features: ['Gestione eventi completa', 'Design responsive', 'Integrazione Google Forms', 'SEO ottimizzato'],
       tech: ['Next.js', 'React', 'Tailwind CSS', 'Supabase'],
       link: 'https://adorievents.com',
-      color: 'amber',
+      color: 'blue',
       icon: <RocketLaunchIcon className="w-6 h-6" />
     },
     {
@@ -48,7 +52,7 @@ export default function Home() {
       features: ['WCAG 2.1 AA', 'Tour virtuali', 'Multilingue', 'Database accessibile'],
       tech: ['Next.js', 'Accessibility', 'i18n', 'Vercel'],
       link: 'https://itinerariaccessibili.com',
-      color: 'blue',
+      color: 'purple',
       icon: <GlobeAltIcon className="w-6 h-6" />
     }
   ]
@@ -93,81 +97,14 @@ export default function Home() {
   return (
     <>
       {/* Navbar */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
-      }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <div className="flex items-center">
-              <span className="text-2xl font-bold bg-gradient-to-r from-brand-amber-700 to-brand-blue-800 bg-clip-text text-transparent">
-                Greg
-              </span>
-            </div>
-
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href="#home" className="text-gray-700 hover:text-brand-amber-700 transition">
-                Home
-              </Link>
-              <Link href="#progetti" className="text-gray-700 hover:text-brand-amber-700 transition">
-                Progetti
-              </Link>
-              <Link href="/servizi" className="text-gray-700 hover:text-brand-amber-700 transition">
-                Servizi
-              </Link>
-              <Link href="#tecnologie" className="text-gray-700 hover:text-brand-amber-700 transition">
-                Tech Stack
-              </Link>
-              <Link href="#contatti" className="px-4 py-2 bg-gradient-to-r from-brand-amber-600 to-brand-blue-800 text-white rounded-lg hover:opacity-90 transition">
-                Contattami
-              </Link>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-gray-700"
-            >
-              {mobileMenuOpen ? (
-                <XMarkIcon className="h-6 w-6" />
-              ) : (
-                <Bars3Icon className="h-6 w-6" />
-              )}
-            </button>
-          </div>
-
-          {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-gray-200">
-              <div className="flex flex-col space-y-4">
-                <Link href="#home" className="text-gray-700 hover:text-brand-amber-700">
-                  Home
-                </Link>
-                <Link href="#progetti" className="text-gray-700 hover:text-brand-amber-700">
-                  Progetti
-                </Link>
-                <Link href="/servizi" className="text-gray-700 hover:text-brand-amber-700">
-                  Servizi
-                </Link>
-                <Link href="#tecnologie" className="text-gray-700 hover:text-brand-amber-700">
-                  Tech Stack
-                </Link>
-                <Link href="#contatti" className="text-brand-amber-700 font-semibold">
-                  Contattami
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
-
+      <Navbar/>
+            
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center pt-16 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 animate-fade-up">
-              Ciao, sono <span className="bg-gradient-to-r from-brand-amber-700 to-brand-blue-800 bg-clip-text text-transparent">Greg</span>
+              Ciao, sono <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Greg</span>
             </h1>
             <h2 className="text-2xl md:text-3xl text-gray-700 mb-8">
               Web Developer | Specialista Next.js & React
@@ -180,14 +117,14 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 href="#progetti"
-                className="px-8 py-4 bg-gradient-to-r from-brand-amber-600 to-brand-blue-800 text-white rounded-lg font-semibold hover:opacity-90 transition transform hover:scale-105 inline-flex items-center justify-center"
+                className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold hover:opacity-90 transition transform hover:scale-105 inline-flex items-center justify-center"
               >
                 Scopri i miei progetti
                 <ArrowRightIcon className="w-5 h-5 ml-2" />
               </Link>
               <Link 
                 href="#contatti"
-                className="px-8 py-4 border-2 border-brand-blue-800 text-brand-blue-800 rounded-lg font-semibold hover:bg-brand-blue-800 hover:text-white transition inline-flex items-center justify-center"
+                className="px-8 py-4 border-2 border-brand-blue-800 text-purple-600 rounded-lg font-semibold hover:bg-brand-blue-800 hover:text-white transition inline-flex items-center justify-center"
               >
                 Lavoriamo insieme
                 <EnvelopeIcon className="w-5 h-5 ml-2" />
@@ -202,7 +139,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Progetti <span className="bg-gradient-to-r from-brand-amber-700 to-brand-blue-800 bg-clip-text text-transparent">In Evidenza</span>
+              Progetti <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">In Evidenza</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Esplora alcuni dei miei lavori più recenti, dove innovazione e accessibilità si incontrano
@@ -223,8 +160,8 @@ export default function Home() {
                   <div className="flex items-center mb-4">
                     <div className={`w-12 h-12 ${
                       project.color === 'amber' 
-                        ? 'bg-brand-amber-600' 
-                        : 'bg-brand-blue-800'
+                        ? 'bg-brand-purple-500' 
+                        : 'bg-brand-blue-600'
                     } rounded-lg flex items-center justify-center text-white mr-4`}>
                       {project.icon}
                     </div>
@@ -239,7 +176,7 @@ export default function Home() {
                       {project.features.map((feature, i) => (
                         <li key={i} className="flex items-center text-gray-600">
                           <CheckCircleIcon className={`w-5 h-5 mr-2 ${
-                            project.color === 'amber' ? 'text-brand-amber-600' : 'text-brand-blue-600'
+                            project.color === 'amber' ? 'text-blue-500' : 'text-brand-blue-600'
                           }`} />
                           {feature}
                         </li>
@@ -253,8 +190,8 @@ export default function Home() {
                         key={i}
                         className={`px-3 py-1 ${
                           project.color === 'amber'
-                            ? 'bg-amber-100 text-amber-800'
-                            : 'bg-blue-100 text-blue-800'
+                            ? 'bg-amber-100 text-brand-purple-600'
+                            : 'bg-blue-100 text-brand-blue-700'
                         } rounded-full text-sm font-medium`}
                       >
                         {tech}
@@ -268,7 +205,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className={`inline-flex items-center ${
                       project.color === 'amber' 
-                        ? 'text-brand-amber-600 hover:text-brand-amber-700' 
+                        ? 'text-blue-500 hover:text-blue-600' 
                         : 'text-brand-blue-600 hover:text-brand-blue-700'
                     } font-semibold`}
                   >
@@ -287,7 +224,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              I Miei <span className="bg-gradient-to-r from-brand-amber-700 to-brand-blue-800 bg-clip-text text-transparent">Servizi</span>
+              I Miei <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Servizi</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Offro soluzioni complete per portare la tua presenza digitale al livello successivo
@@ -299,10 +236,10 @@ export default function Home() {
               <div key={index} className="bg-white rounded-xl shadow-lg p-8 transition-all duration-300 hover:scale-105 hover:shadow-xl">
                 <div className={`w-16 h-16 ${
                   service.color === 'amber' 
-                    ? 'bg-gradient-to-br from-amber-500 to-amber-600'
+                    ? 'bg-gradient-to-br from-blue-500 to-blue-600'
                     : service.color === 'blue'
                     ? 'bg-gradient-to-br from-blue-700 to-blue-800'
-                    : 'bg-gradient-to-r from-brand-amber-600 to-brand-blue-800'
+                    : 'bg-gradient-to-r from-blue-500 to-purple-600'
                 } rounded-xl flex items-center justify-center mb-6 text-white`}>
                   {service.icon}
                 </div>
@@ -328,24 +265,24 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-8">
               <div className="text-center">
-                <p className="text-3xl font-bold text-brand-amber-600">€300</p>
+                <p className="text-3xl font-bold text-blue-500">€300</p>
                 <p className="text-gray-600">Starter</p>
                 <p className="text-sm text-gray-500 mt-1">Sito base</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl font-bold text-brand-blue-800">€800</p>
+                <p className="text-3xl font-bold text-purple-600">€800</p>
                 <p className="text-gray-600">Professional</p>
                 <p className="text-sm text-gray-500 mt-1">Più richiesto</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl font-bold bg-gradient-to-r from-brand-amber-700 to-brand-blue-800 bg-clip-text text-transparent">€1500+</p>
+                <p className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">€1500+</p>
                 <p className="text-gray-600">Enterprise</p>
                 <p className="text-sm text-gray-500 mt-1">Progetti complessi</p>
               </div>
             </div>
             <Link 
               href="/servizi"
-              className="inline-block mt-8 px-6 py-3 bg-gradient-to-r from-brand-amber-600 to-brand-blue-800 text-white rounded-lg font-semibold hover:opacity-90 transition"
+              className="inline-block mt-8 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold hover:opacity-90 transition"
             >
               Scopri Tutti i Servizi
             </Link>
@@ -358,7 +295,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Stack <span className="bg-gradient-to-r from-brand-amber-700 to-brand-blue-800 bg-clip-text text-transparent">Tecnologico</span>
+              Stack <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Tecnologico</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Utilizzo le tecnologie più moderne per creare soluzioni robuste e scalabili
@@ -384,7 +321,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Perché Scegliere <span className="bg-gradient-to-r from-brand-amber-700 to-brand-blue-800 bg-clip-text text-transparent">Me?</span>
+              Perché Scegliere <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Me?</span>
             </h2>
           </div>
           
@@ -418,7 +355,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-brand-amber-600 to-brand-blue-800">
+      <section className="py-20 bg-gradient-to-r from-blue-500 to-purple-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Pronto a Dare Vita al Tuo Progetto?
@@ -428,7 +365,7 @@ export default function Home() {
           </p>
           <Link 
             href="#contatti"
-            className="inline-block px-8 py-4 bg-white text-brand-blue-800 rounded-lg font-semibold hover:bg-gray-100 transition transform hover:scale-105"
+            className="inline-block px-8 py-4 bg-white text-purple-600 rounded-lg font-semibold hover:bg-gray-100 transition transform hover:scale-105"
           >
             Richiedi un Preventivo Gratuito
           </Link>
@@ -440,7 +377,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Lavoriamo <span className="bg-gradient-to-r from-brand-amber-700 to-brand-blue-800 bg-clip-text text-transparent">Insieme</span>
+              Lavoriamo <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Insieme</span>
             </h2>
             <p className="text-lg text-gray-600">
               Preventivi gratuiti in 24 ore. Parliamo del tuo progetto!
@@ -455,13 +392,13 @@ export default function Home() {
                   href="https://www.fiverr.com/yourusername" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center text-gray-700 hover:text-brand-amber-600 transition"
+                  className="flex items-center text-gray-700 hover:text-blue-500 transition"
                 >
                   <span className="mr-3">💼</span> Fiverr Profile
                 </a>
                 <a 
                   href="mailto:gregoriomangione8@gmail.com"
-                  className="flex items-center text-gray-700 hover:text-brand-amber-600 transition"
+                  className="flex items-center text-gray-700 hover:text-blue-500 transition"
                 >
                   <span className="mr-3">✉️</span> Email
                 </a>
@@ -469,7 +406,7 @@ export default function Home() {
                   href="https://linkedin.com/in/yourprofile"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center text-gray-700 hover:text-brand-amber-600 transition"
+                  className="flex items-center text-gray-700 hover:text-blue-500 transition"
                 >
                   <span className="mr-3">💼</span> LinkedIn
                 </a>
@@ -477,7 +414,7 @@ export default function Home() {
                   href="https://github.com/yourprofile"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center text-gray-700 hover:text-brand-amber-600 transition"
+                  className="flex items-center text-gray-700 hover:text-blue-500 transition"
                 >
                   <span className="mr-3">🐙</span> GitHub
                 </a>

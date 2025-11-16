@@ -7,6 +7,10 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 249, 250, 251;
   --background-end-rgb: 255, 255, 255;
+  
+  /* Nuovi colori gradiente */
+  --gradient-blue: #1E88E5;
+  --gradient-purple: #7B2CBF;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -45,12 +49,22 @@ body {
     text-wrap: balance;
   }
   
+  /* AGGIORNATO: Nuovo gradiente blu-viola */
   .gradient-text {
-    @apply bg-gradient-to-r from-brand-amber-700 to-brand-blue-800 bg-clip-text text-transparent;
+    background: linear-gradient(135deg, #1E88E5 0%, #7B2CBF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   
+  /* AGGIORNATO: Nuovo gradiente per backgrounds */
   .gradient-bg {
-    @apply bg-gradient-to-r from-brand-amber-600 to-brand-blue-800;
+    background: linear-gradient(135deg, #1E88E5 0%, #7B2CBF 100%);
+  }
+  
+  /* NUOVO: Variante più chiara per sezioni */
+  .gradient-bg-light {
+    background: linear-gradient(135deg, rgba(30, 136, 229, 0.1) 0%, rgba(123, 44, 191, 0.1) 100%);
   }
   
   .card-hover {
@@ -79,15 +93,28 @@ body {
     transform: translateY(0);
   }
   
+  /* AGGIORNATO: Bordo con nuovo gradiente */
   .gradient-border {
     @apply relative;
     background: linear-gradient(white, white) padding-box,
-                linear-gradient(135deg, #d97706 0%, #1e40af 100%) border-box;
+                linear-gradient(135deg, #1E88E5 0%, #7B2CBF 100%) border-box;
     border: 2px solid transparent;
+  }
+  
+  /* NUOVO: Bottone con gradiente animato */
+  .gradient-button {
+    background: linear-gradient(135deg, #1E88E5 0%, #7B2CBF 100%);
+    transition: all 0.3s ease;
+  }
+  
+  .gradient-button:hover {
+    background: linear-gradient(135deg, #1976D2 0%, #6A1B9A 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(30, 136, 229, 0.3);
   }
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - AGGIORNATO */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -97,10 +124,19 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #d97706 0%, #1e40af 100%);
+  background: linear-gradient(135deg, #1E88E5 0%, #7B2CBF 100%);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #b45309 0%, #1d4ed8 100%);
+  background: linear-gradient(135deg, #1976D2 0%, #6A1B9A 100%);
+}
+
+/* NUOVO: Effetto glow per elementi interattivi */
+.glow-effect {
+  box-shadow: 0 0 20px rgba(30, 136, 229, 0.3);
+}
+
+.glow-effect:hover {
+  box-shadow: 0 0 30px rgba(123, 44, 191, 0.5);
 }
