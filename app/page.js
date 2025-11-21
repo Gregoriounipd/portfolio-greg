@@ -265,17 +265,17 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-8">
               <div className="text-center">
-                <p className="text-3xl font-bold text-blue-500">€300</p>
+                <p className="text-3xl font-bold text-blue-500">€</p>
                 <p className="text-gray-600">Starter</p>
                 <p className="text-sm text-gray-500 mt-1">Sito base</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl font-bold text-purple-600">€800</p>
+                <p className="text-3xl font-bold text-purple-600">€€</p>
                 <p className="text-gray-600">Professional</p>
                 <p className="text-sm text-gray-500 mt-1">Più richiesto</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">€1500+</p>
+                <p className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">€€€</p>
                 <p className="text-gray-600">Enterprise</p>
                 <p className="text-sm text-gray-500 mt-1">Progetti complessi</p>
               </div>

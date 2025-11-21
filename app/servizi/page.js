@@ -153,9 +153,9 @@ export default function Servizi() {
       icona: <PaintBrushIcon className="w-8 h-8" />,
       colore: 'gradient',
       prezzo: {
-        starter: 250,
-        professional: 360,
-        enterprise: 700
+        starter: 200,
+        professional: 320,
+        enterprise: 500
       },
       caratteristiche: [
         'Wireframe e mockup',
