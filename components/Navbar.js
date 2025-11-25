@@ -61,7 +61,7 @@ export default function Navbar() {
               <Link href="/#home" className="text-gray-700 hover:text-blue-600">
                 Home
               </Link>
-              <Link href="/#progetti" className="text-gray-700 hover:text-blue-600">
+              <Link href="/progetti" className="text-gray-700 hover:text-blue-600">
                 Progetti
               </Link>
               <Link href="/servizi" className="text-gray-700 hover:text-blue-600">
