@@ -36,7 +36,7 @@ export default function Servizi() {
       titolo: 'Sviluppo Web Full-Stack',
       descrizione: 'Creo applicazioni web complete e moderne utilizzando le ultime tecnologie',
       icona: <CodeBracketIcon className="w-8 h-8" />,
-      colore: 'amber',
+      colore: 'blue',
       prezzo: {
         starter: 250,
         professional: 450,
@@ -59,7 +59,7 @@ export default function Servizi() {
       titolo: 'E-Commerce & Marketplace',
       descrizione: 'Soluzioni complete per vendere online con sistemi di pagamento integrati',
       icona: <CurrencyEuroIcon className="w-8 h-8" />,
-      colore: 'blue',
+      colore: 'purple',
       prezzo: {
         starter: 300,
         professional: 800,
@@ -128,7 +128,7 @@ export default function Servizi() {
       titolo: 'SEO & Performance',
       descrizione: 'Ottimizzazione per motori di ricerca e velocità di caricamento',
       icona: <MagnifyingGlassIcon className="w-8 h-8" />,
-      colore: 'amber',
+      colore: 'purple',
       prezzo: {
         starter: 100,
         professional: 300,
@@ -176,7 +176,7 @@ export default function Servizi() {
     {
       nome: 'Starter',
       descrizione: 'Perfetto per iniziare',
-      colore: 'amber',
+      colore: 'blue',
       include: [
         'Sviluppo base',
         'Design responsive',
@@ -188,7 +188,7 @@ export default function Servizi() {
     {
       nome: 'Professional',
       descrizione: 'La scelta più popolare',
-      colore: 'blue',
+      colore: 'purple',
       include: [
         'Tutto di Starter',
         'Funzionalità avanzate',
@@ -244,7 +244,7 @@ export default function Servizi() {
       {/* Navbar Principale */}
       <Navbar />
 
-      {/* Breadcrumb - CHIUSO CORRETTAMENTE */}
+      {/* Breadcrumb */}
       <div className="pt-16 bg-gradient-to-r from-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
@@ -270,7 +270,7 @@ export default function Servizi() {
         </div>
       </div>
 
-      {/* Hero Section - ORA FUORI DAL BREADCRUMB */}
+      {/* Hero Section */}
       <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -285,40 +285,46 @@ export default function Servizi() {
         </div>
       </section>
 
-      {/* Services Grid */}
+      {/* Services Grid - MIGLIORATO CON PREZZI PIÙ VISIBILI */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {servizi.map((servizio) => (
               <div
                 key={servizio.id}
-                className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-xl transition-all duration-300 cursor-pointer"
+                className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-2xl hover:border-blue-500 transition-all duration-300 cursor-pointer group"
                 onClick={() => setSelectedService(servizio)}
               >
                 <div className={`w-14 h-14 ${
-                  servizio.colore === 'amber'
+                  servizio.colore === 'blue'
+                    ? 'bg-gradient-to-br from-blue-500 to-blue-600'
+                    : servizio.colore === 'purple'
                     ? 'bg-gradient-to-br from-purple-500 to-purple-600'
-                    : servizio.colore === 'blue'
-                    ? 'bg-gradient-to-br from-blue-700 to-blue-800'
                     : 'bg-gradient-to-r from-blue-500 to-purple-600'
-                } rounded-xl flex items-center justify-center mb-4 text-white`}>
+                } rounded-xl flex items-center justify-center mb-4 text-white group-hover:scale-110 transition-transform duration-300`}>
                   {servizio.icona}
                 </div>
 
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{servizio.titolo}</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition">{servizio.titolo}</h3>
                 <p className="text-gray-600 mb-4">{servizio.descrizione}</p>
 
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center text-sm text-gray-500">
+                {/* PREZZO PIÙ VISIBILE */}
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4 mb-4">
+                  <div className="flex items-baseline justify-center">
+                    <span className="text-sm text-gray-600 mr-2">Da</span>
+                    <span className="text-3xl font-bold text-blue-600">€{servizio.prezzo.starter}</span>
+                  </div>
+                  <p className="text-xs text-center text-gray-500 mt-1">Pacchetto Starter</p>
+                </div>
+
+                <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                  <div className="flex items-center">
                     <ClockIcon className="w-4 h-4 mr-1" />
                     {servizio.tempiConsegna}
                   </div>
-                  <div className="text-sm font-semibold text-blue-500">
-                    Da €{servizio.prezzo.starter}
-                  </div>
                 </div>
 
-                <button className="text-blue-600 hover:text-blue-700 font-semibold inline-flex items-center">
+                <button className="w-full text-blue-600 hover:text-white hover:bg-blue-600 border-2 border-blue-600 py-2 px-4 rounded-lg font-semibold inline-flex items-center justify-center transition-all duration-300">
                   Scopri di più
                   <ArrowRightIcon className="w-4 h-4 ml-2" />
                 </button>
@@ -336,10 +342,10 @@ export default function Servizi() {
               <div className="flex justify-between items-start mb-6">
                 <div className="flex items-center">
                   <div className={`w-14 h-14 ${
-                    selectedService.colore === 'amber'
+                    selectedService.colore === 'blue'
+                      ? 'bg-gradient-to-br from-blue-500 to-blue-600'
+                      : selectedService.colore === 'purple'
                       ? 'bg-gradient-to-br from-purple-500 to-purple-600'
-                      : selectedService.colore === 'blue'
-                      ? 'bg-gradient-to-br from-blue-700 to-blue-800'
                       : 'bg-gradient-to-r from-blue-500 to-purple-600'
                   } rounded-xl flex items-center justify-center mr-4 text-white`}>
                     {selectedService.icona}
@@ -359,22 +365,23 @@ export default function Servizi() {
               <p className="text-gray-600 mb-6">{selectedService.descrizione}</p>
 
               {/* Pricing */}
-              <div className="bg-gray-50 rounded-xl p-6 mb-6">
+              <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 mb-6">
                 <h3 className="font-semibold text-gray-900 mb-4">Prezzi Trasparenti</h3>
                 <div className="grid grid-cols-3 gap-4">
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-blue-500">€{selectedService.prezzo.starter}</p>
-                    <p className="text-sm text-gray-600">Starter</p>
+                  <div className="text-center bg-white rounded-lg p-4">
+                    <p className="text-3xl font-bold text-blue-500">€{selectedService.prezzo.starter}</p>
+                    <p className="text-sm text-gray-600 mt-1">Starter</p>
                   </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-blue-800">€{selectedService.prezzo.professional}</p>
-                    <p className="text-sm text-gray-600">Professional</p>
+                  <div className="text-center bg-white rounded-lg p-4 ring-2 ring-purple-500">
+                    <p className="text-3xl font-bold text-purple-600">€{selectedService.prezzo.professional}</p>
+                    <p className="text-sm text-gray-600 mt-1">Professional</p>
+                    <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full mt-1 inline-block">Popolare</span>
                   </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                  <div className="text-center bg-white rounded-lg p-4">
+                    <p className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
                       €{selectedService.prezzo.enterprise}+
                     </p>
-                    <p className="text-sm text-gray-600">Enterprise</p>
+                    <p className="text-sm text-gray-600 mt-1">Enterprise</p>
                   </div>
                 </div>
               </div>
@@ -434,184 +441,216 @@ export default function Servizi() {
         </div>
       )}
 
+      {/* Packages Section - COLORI CORRETTI */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Scegli il Tuo <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Pacchetto</span>
+            </h2>
+            <p className="text-lg text-gray-600">
+              Soluzioni flessibili per ogni budget e necessità
+            </p>
+          </div>
 
-        {/* Packages Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Scegli il Tuo <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Pacchetto</span>
-              </h2>
-              <p className="text-lg text-gray-600">
-                Soluzioni flessibili per ogni budget e necessità
-              </p>
-            </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {pacchetti.map((pacchetto, index) => (
+              <div
+                key={index}
+                className={`relative bg-white rounded-2xl shadow-lg p-8 ${
+                  pacchetto.popolare ? 'ring-2 ring-purple-500 transform scale-105' : ''
+                }`}
+              >
+                {pacchetto.popolare && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-gradient-to-r from-purple-500 to-purple-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                      Più Popolare
+                    </span>
+                  </div>
+                )}
 
-            <div className="grid md:grid-cols-3 gap-8">
-              {pacchetti.map((pacchetto, index) => (
-                <div
-                  key={index}
-                  className={`relative bg-white rounded-2xl shadow-lg p-8 ${pacchetto.popolare ? 'ring-2 ring-brand-blue-600 transform scale-105' : ''
-                    }`}
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{pacchetto.nome}</h3>
+                  <p className="text-gray-600">{pacchetto.descrizione}</p>
+                </div>
+
+                <ul className="space-y-3 mb-8">
+                  {pacchetto.include.map((item, i) => (
+                    <li key={i} className="flex items-start">
+                      <CheckCircleIcon className="w-5 h-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
+                      <span className="text-gray-700">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  href="/#contatti"
+                  className={`block text-center px-6 py-3 rounded-lg font-semibold transition ${
+                    pacchetto.popolare
+                      ? 'bg-gradient-to-r from-purple-500 to-purple-600 text-white hover:opacity-90'
+                      : 'border-2 border-blue-500 text-blue-600 hover:bg-blue-50'
+                  }`}
                 >
-                  {pacchetto.popolare && (
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-gradient-to-r from-brand-blue-600 to-brand-purple-700 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                        Più Popolare
-                      </span>
-                    </div>
-                  )}
-
-                  <div className="text-center mb-6">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{pacchetto.nome}</h3>
-                    <p className="text-gray-600">{pacchetto.descrizione}</p>
-                  </div>
-
-                  <ul className="space-y-3 mb-8">
-                    {pacchetto.include.map((item, i) => (
-                      <li key={i} className="flex items-start">
-                        <CheckCircleIcon className="w-5 h-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Link
-                    href="/#contatti"
-                    className={`block text-center px-6 py-3 rounded-lg font-semibold transition ${pacchetto.popolare
-                      ? 'bg-gradient-to-r from-blue-600 to-purple-800 text-white hover:opacity-90'
-                      : 'border-2 border-gray-300 text-gray-700 hover:border-brand-amber-600'
-                      }`}
-                  >
-                    Inizia con {pacchetto.nome}
-                  </Link>
-                </div>
-              ))}
-            </div>
+                  Inizia con {pacchetto.nome}
+                </Link>
+              </div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Process Section */}
-        <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Il Mio <span className="bg-gradient-to-r from-brand-blue-600 to-brand-purple-700 bg-clip-text text-transparent">Processo</span>
-              </h2>
-              <p className="text-lg text-gray-600">
-                Un approccio strutturato per garantire risultati eccellenti
+      {/* Process Section - COLORI CORRETTI */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Il Mio <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Processo</span>
+            </h2>
+            <p className="text-lg text-gray-600">
+              Un approccio strutturato per garantire risultati eccellenti
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-5 gap-8">
+            {[
+              { fase: '1', nome: 'Analisi', desc: 'Comprendo le tue esigenze e obiettivi', icona: <MagnifyingGlassIcon className="w-6 h-6" /> },
+              { fase: '2', nome: 'Design', desc: 'Creo mockup e prototipi interattivi', icona: <PaintBrushIcon className="w-6 h-6" /> },
+              { fase: '3', nome: 'Sviluppo', desc: 'Codifico con tecnologie moderne', icona: <CodeBracketIcon className="w-6 h-6" /> },
+              { fase: '4', nome: 'Testing', desc: 'Test completi su tutti i dispositivi', icona: <ShieldCheckIcon className="w-6 h-6" /> },
+              { fase: '5', nome: 'Deploy', desc: 'Lancio e formazione', icona: <RocketLaunchIcon className="w-6 h-6" /> }
+            ].map((step, index) => (
+              <div key={index} className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                  {step.icona}
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">Fase {step.fase}: {step.nome}</h3>
+                <p className="text-sm text-gray-600">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why These Prices Section */}
+      <section className="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Perché Questi <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Prezzi?</span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white rounded-xl p-6 shadow-lg">
+              <h3 className="font-bold text-gray-900 mb-3">💰 Risparmio Garantito</h3>
+              <p className="text-gray-600">
+                Le agenzie chiedono €3000-10000 per gli stessi servizi.
+                Con me risparmi fino al 70% mantenendo la stessa qualità.
               </p>
             </div>
-
-            <div className="grid md:grid-cols-5 gap-8">
-              {[
-                { fase: '1', nome: 'Analisi', desc: 'Comprendo le tue esigenze e obiettivi', icona: <MagnifyingGlassIcon className="w-6 h-6" /> },
-                { fase: '2', nome: 'Design', desc: 'Creo mockup e prototipi interattivi', icona: <PaintBrushIcon className="w-6 h-6" /> },
-                { fase: '3', nome: 'Sviluppo', desc: 'Codifico con tecnologie moderne', icona: <CodeBracketIcon className="w-6 h-6" /> },
-                { fase: '4', nome: 'Testing', desc: 'Test completi su tutti i dispositivi', icona: <ShieldCheckIcon className="w-6 h-6" /> },
-                { fase: '5', nome: 'Deploy', desc: 'Lancio e formazione', icona: <RocketLaunchIcon className="w-6 h-6" /> }
-              ].map((step, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-r from-brand-amber-600 to-brand-blue-800 rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                    {step.icona}
-                  </div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Fase {step.fase}: {step.nome}</h3>
-                  <p className="text-sm text-gray-600">{step.desc}</p>
-                </div>
-              ))}
+            <div className="bg-white rounded-xl p-6 shadow-lg">
+              <h3 className="font-bold text-gray-900 mb-3">🚀 ROI Veloce</h3>
+              <p className="text-gray-600">
+                Un sito professionale si ripaga in 2-3 mesi portando nuovi clienti.
+                È un investimento, non un costo.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-lg">
+              <h3 className="font-bold text-gray-900 mb-3">🏆 Qualità Premium</h3>
+              <p className="text-gray-600">
+                Uso le stesse tecnologie di Netflix e Airbnb (Next.js, React).
+                Il tuo sito sarà veloce, moderno e scalabile.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-lg">
+              <h3 className="font-bold text-gray-900 mb-3">📞 Contatto Diretto</h3>
+              <p className="text-gray-600">
+                Parli direttamente con me, non con commerciali.
+                Risposte rapide e modifiche immediate.
+              </p>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Why These Prices Section */}
-        <section className="py-16 bg-gradient-to-br from-amber-50 to-blue-50">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Perché Questi <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Prezzi?</span>
-              </h2>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white rounded-xl p-6">
-                <h3 className="font-bold text-gray-900 mb-3">💰 Risparmio Garantito</h3>
-                <p className="text-gray-600">
-                  Le agenzie chiedono €3000-10000 per gli stessi servizi.
-                  Con me risparmi fino al 70% mantenendo la stessa qualità.
-                </p>
-              </div>
-              <div className="bg-white rounded-xl p-6">
-                <h3 className="font-bold text-gray-900 mb-3">🚀 ROI Veloce</h3>
-                <p className="text-gray-600">
-                  Un sito professionale si ripaga in 2-3 mesi portando nuovi clienti.
-                  È un investimento, non un costo.
-                </p>
-              </div>
-              <div className="bg-white rounded-xl p-6">
-                <h3 className="font-bold text-gray-900 mb-3">🏆 Qualità Premium</h3>
-                <p className="text-gray-600">
-                  Uso le stesse tecnologie di Netflix e Airbnb (Next.js, React).
-                  Il tuo sito sarà veloce, moderno e scalabile.
-                </p>
-              </div>
-              <div className="bg-white rounded-xl p-6">
-                <h3 className="font-bold text-gray-900 mb-3">📞 Contatto Diretto</h3>
-                <p className="text-gray-600">
-                  Parli direttamente con me, non con commerciali.
-                  Risposte rapide e modifiche immediate.
-                </p>
-              </div>
-            </div>
+      {/* FAQ Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Domande <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Frequenti</span>
+            </h2>
           </div>
-        </section>
 
-        {/* FAQ Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Domande <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Frequenti</span>
-              </h2>
-            </div>
-
-            <div className="space-y-6">
-              {faq.map((item, index) => (
-                <div key={index} className="bg-white rounded-xl p-6">
-                  <h3 className="font-semibold text-gray-900 mb-2">{item.domanda}</h3>
-                  <p className="text-gray-600">{item.risposta}</p>
-                </div>
-              ))}
-            </div>
+          <div className="space-y-6">
+            {faq.map((item, index) => (
+              <div key={index} className="bg-white rounded-xl p-6 shadow-lg">
+                <h3 className="font-semibold text-gray-900 mb-2">{item.domanda}</h3>
+                <p className="text-gray-600">{item.risposta}</p>
+              </div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-blue-500 to-purple-600">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* CTA Section con WhatsApp */}
+      <section className="py-20 bg-gradient-to-r from-blue-500 to-purple-600">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Pronto a Iniziare il Tuo Progetto?
             </h2>
             <p className="text-xl text-white/90 mb-8">
               Preventivo gratuito in 24 ore. Nessun impegno.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/#contatti"
-                className="px-8 py-4 bg-white text-brand-blue-800 rounded-lg font-semibold hover:bg-gray-100 transition inline-flex items-center justify-center"
-              >
-                Richiedi Preventivo
-                <ArrowRightIcon className="w-5 h-5 ml-2" />
-              </Link>
-              <Link
-                href="/"
-                className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition inline-flex items-center justify-center"
-              >
-                Vedi Portfolio
-                <SparklesIcon className="w-5 h-5 ml-2" />
-              </Link>
-            </div>
           </div>
-        </section>
+
+          {/* WhatsApp CTA Principale */}
+          <div className="mb-8">
+            <a
+              href="https://wa.me/393508887554?text=Ciao%20Greg%2C%20ho%20visto%20i%20tuoi%20servizi%20e%20vorrei%20un%20preventivo%20per%20"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block bg-white hover:bg-gray-50 rounded-2xl p-8 shadow-2xl transition-all duration-300 transform hover:scale-105"
+            >
+              <div className="flex items-center justify-center mb-4">
+                <svg className="w-12 h-12 mr-4 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                <div className="text-left">
+                  <p className="text-2xl font-bold text-gray-900">Scrivimi su WhatsApp</p>
+                  <p className="text-gray-600">Il modo più veloce per un preventivo</p>
+                </div>
+              </div>
+              <p className="text-center text-gray-700 font-medium">
+                Risposta garantita in 2 ore →
+              </p>
+            </a>
+          </div>
+
+          {/* Opzioni Alternative */}
+          <div className="text-center mb-6">
+            <p className="text-white/70 text-sm uppercase tracking-wider">Oppure</p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/#contatti"
+              className="px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition inline-flex items-center justify-center"
+            >
+              Compila il Form
+              <ArrowRightIcon className="w-5 h-5 ml-2" />
+            </Link>
+            <Link
+              href="/"
+              className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition inline-flex items-center justify-center"
+            >
+              Vedi Portfolio
+              <SparklesIcon className="w-5 h-5 ml-2" />
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   )
 }
