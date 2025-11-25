@@ -151,15 +151,15 @@ export default function Home() {
               <div
                 key={index}
                 className={`transition-all duration-300 hover:scale-105 hover:shadow-xl bg-gradient-to-br ${project.color === 'amber'
-                    ? 'from-amber-50 to-orange-50'
-                    : 'from-blue-50 to-indigo-50'
+                  ? 'from-amber-50 to-orange-50'
+                  : 'from-blue-50 to-indigo-50'
                   } rounded-2xl overflow-hidden shadow-lg`}
               >
                 <div className="p-8">
                   <div className="flex items-center mb-4">
                     <div className={`w-12 h-12 ${project.color === 'amber'
-                        ? 'bg-brand-purple-500'
-                        : 'bg-brand-blue-600'
+                      ? 'bg-brand-purple-500'
+                      : 'bg-brand-blue-600'
                       } rounded-lg flex items-center justify-center text-white mr-4`}>
                       {project.icon}
                     </div>
@@ -186,8 +186,8 @@ export default function Home() {
                       <span
                         key={i}
                         className={`px-3 py-1 ${project.color === 'amber'
-                            ? 'bg-amber-100 text-brand-purple-600'
-                            : 'bg-blue-100 text-brand-blue-700'
+                          ? 'bg-amber-100 text-brand-purple-600'
+                          : 'bg-blue-100 text-brand-blue-700'
                           } rounded-full text-sm font-medium`}
                       >
                         {tech}
@@ -200,8 +200,8 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`inline-flex items-center ${project.color === 'amber'
-                        ? 'text-blue-500 hover:text-blue-600'
-                        : 'text-brand-blue-600 hover:text-brand-blue-700'
+                      ? 'text-blue-500 hover:text-blue-600'
+                      : 'text-brand-blue-600 hover:text-brand-blue-700'
                       } font-semibold`}
                   >
                     Visita il sito
@@ -230,10 +230,10 @@ export default function Home() {
             {services.map((service, index) => (
               <div key={index} className="bg-white rounded-xl shadow-lg p-8 transition-all duration-300 hover:scale-105 hover:shadow-xl">
                 <div className={`w-16 h-16 ${service.color === 'amber'
-                    ? 'bg-gradient-to-br from-blue-500 to-blue-600'
-                    : service.color === 'blue'
-                      ? 'bg-gradient-to-br from-blue-700 to-blue-800'
-                      : 'bg-gradient-to-r from-blue-500 to-purple-600'
+                  ? 'bg-gradient-to-br from-blue-500 to-blue-600'
+                  : service.color === 'blue'
+                    ? 'bg-gradient-to-br from-blue-700 to-blue-800'
+                    : 'bg-gradient-to-r from-blue-500 to-purple-600'
                   } rounded-xl flex items-center justify-center mb-6 text-white`}>
                   {service.icon}
                 </div>
@@ -552,8 +552,13 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <p className="mb-4">© 2025 Greg - Web Developer. Tutti i diritti riservati.</p>
-            <p className="text-gray-400">
+            <p className="text-gray-400 mb-2">
               Creato con <span className="text-red-500">❤️</span> utilizzando le tecnologie che amo
+            </p>
+            <p className="text-gray-500 text-sm">
+              <a href="/privacy" className="hover:text-gray-300 transition-colors">
+                Privacy Policy
+              </a>
             </p>
           </div>
         </div>
