@@ -110,9 +110,8 @@ export default function Home() {
               Web Developer | Specialista Next.js & React
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed">
-              Trasformo idee in esperienze digitali moderne e accessibili.
-              Specializzato in sviluppo web con Next.js, React e Tailwind CSS,
-              creo soluzioni che uniscono design elegante e prestazioni eccellenti.
+              Creo siti web moderni, veloci e accessibili che aiutano le attività a ottenere più clienti.
+              Unisco design elegante e tecnologia avanzata per offrirti un’esperienza online professionale e semplice da gestire.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
